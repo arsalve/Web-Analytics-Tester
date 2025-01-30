@@ -117,32 +117,8 @@ var extraParameter = {
 ## How It Works
 
 1. **Server Setup**: The Express server serves the HTML form and handles form submissions.
-2. **Form Submission**: When the form is submitted, the server receives the 
-
-links
-
- and 
-
-extraParameter
-
- values.
-3. **Main Function**: The 
-
-main
-
- function in 
-
-main.js
-
- is called with the provided 
-
-links
-
- and 
-
-extraParameter
-
-.
+2. **Form Submission**: When the form is submitted, the server receives the links and extraParameter values.
+3. **Main Function**: The main function in main.js is called with the provided links and extraParameter.
 4. **Puppeteer**: Puppeteer is used to automate the browser and perform the tests on the specified links.
 5. **Analytics Calls**: The specified analytics calls are captured and processed.
 6. **Results**: The results are displayed on the page and saved in the 
