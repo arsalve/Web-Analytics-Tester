@@ -1,0 +1,35 @@
+{
+  "name": "web_analytics_tester",
+  "version": "1.0.0",
+  "description": "This bot test the various web analytics network calls and genrates the report in json and csv format ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node Main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arsalve/Web-Analytics-Tester.git"
+  },
+  "keywords": [
+    "Web",
+    "Analytics",
+    "adobe",
+    "analytics",
+    "google",
+    "analytics"
+  ],
+  "author": "Ashish R Salve",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arsalve/Web-Analytics-Tester/issues"
+  },
+  "homepage": "https://github.com/arsalve/Web-Analytics-Tester#readme",
+  "dependencies": {
+    "chrome-har": "^1.0.1",
+    "json2csv": "^6.0.0-alpha.2",
+    "puppeteer": "^24.1.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "web_analytics_tester": "file:"
+  }
+}
