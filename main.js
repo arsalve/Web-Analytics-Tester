@@ -420,7 +420,7 @@ async function main(extraParameter) {
 
 // Sample extraParameter object
 var extraParameter = {
-    links = ["https://ecommerce.tealiumdemo.com/"];
+    links = ["https://ecommerce.tealiumdemo.com/"],
     Authentication:true,
     creds: {
         user: "readonly",

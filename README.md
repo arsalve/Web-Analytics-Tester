@@ -1,16 +1,14 @@
-Collecting workspace information
-
 # Web-Analytics-Tester
 
 This bot tests various web analytics network calls and generates reports in JSON and CSV formats.
 
 ## Table of Contents
 
-- Installation
-- Usage
-- Configuration
-- Built With
-- License
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Built With](#built-with)
+- [License](#license)
 
 ## Installation
 
@@ -29,82 +27,35 @@ This bot tests various web analytics network calls and generates reports in JSON
 
 ## Usage
 
-1. Update the 
-
-extraParameter
-
- object in main.js with your desired configuration.
-2. Add the URLs you want to test in the 
-
-links
-
- array in main.js.
-3. Run the test script:
+1. Start the Express server:
     ```sh
-    npm run test
+    node index.js
     ```
+2. Open your browser and navigate to `http://localhost:3000`.
+3. Fill out the form with the required parameters and click "Run Test".
+4. The results will be displayed on the page and saved in the [Result](http://_vscodecontentref_/0) directory.
 
 ## Configuration
 
-The 
+The [extraParameter](http://_vscodecontentref_/1) object in [main.js](http://_vscodecontentref_/2) allows you to customize the behavior of the bot. Here are some of the key parameters:
 
-extraParameter
-
- object in main.js allows you to customize the behavior of the bot. Here are some of the key parameters:
-
-- 
-
-creds
-
-: Authentication credentials.
-- 
-
-Screenshot
-
-: Whether to take screenshots (
-
-full
-
- for full page, `true` for before and after scroll).
-- 
-
-consent
-
-: Whether to provide consent for requests.
-- 
-
-allDevice
-
-: Whether to test on all devices.
-- 
-
-Click
-
-: Selector for an element to click.
-- 
-
-scrollDepth
-
-: Depth to scroll the page.
-- 
-
-analyticsCalls
-
-: Array of objects specifying analytics calls to capture.
-- 
-
-dataLayer
-
-: Name of the data layer object.
-- 
-
-FileOutput
-
-: Whether to output results to files.
+- [links](http://_vscodecontentref_/3): Array of URLs to test.
+- [Authentication](http://_vscodecontentref_/4): Boolean indicating whether to use authentication.
+- [creds](http://_vscodecontentref_/5): Object containing [user](http://_vscodecontentref_/6) and [pass](http://_vscodecontentref_/7) for authentication.
+- [Screenshot](http://_vscodecontentref_/8): String indicating the type of screenshot (`full`, `true`, `false`).
+- [consent](http://_vscodecontentref_/9): Boolean indicating whether to provide consent for requests.
+- [allDevice](http://_vscodecontentref_/10): Boolean indicating whether to test on all devices.
+- [Click](http://_vscodecontentref_/11): Selector for an element to click.
+- [scrollDepth](http://_vscodecontentref_/12): Depth to scroll the page.
+- [analyticsCalls](http://_vscodecontentref_/13): Array of objects specifying analytics calls to capture.
+- [dataLayer](http://_vscodecontentref_/14): Name of the data layer object.
+- [FileOutput](http://_vscodecontentref_/15): Boolean indicating whether to output results to files.
 
 Example configuration:
 ```javascript
 var extraParameter = {
+    links: ["https://ecommerce.tealiumdemo.com/"],
+    Authentication: true,
     creds: {
         user: "readonly",
         pass: "secret"
@@ -123,20 +74,3 @@ var extraParameter = {
     dataLayer: "utag_data",
     FileOutput: true
 };
-```
-
-## Built With
-
-- [Puppeteer](https://github.com/puppeteer/puppeteer) - Headless Chrome Node.js API
-- [puppeteer-extra](https://github.com/berstend/puppeteer-extra) - A modular plugin framework for puppeteer
-- [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) - Plugin to make puppeteer undetectable
-- [json2csv](https://github.com/zemirco/json2csv) - Convert JSON to CSV
-- [chrome-har](https://github.com/sitespeedio/chrome-har) - Generate HAR files from Chrome DevTools Protocol
-
-## License
-
-This project is licensed under the Apache License 2.0 - see the 
-
-LICENSE
-
- file for details.
