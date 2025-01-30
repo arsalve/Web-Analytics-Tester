@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Analytics Tester</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #66d9ef;
+            animation: fadeIn 2s;
+        }
+        label {
+            color: #a6e22e;
+        }
+        .form-control, .btn {
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #66d9ef;
+            border-color: #66d9ef;
+        }
+        .btn-primary:hover {
+            background-color: #a6e22e;
+            border-color: #a6e22e;
+        }
+        .form-container {
+            background-color: #3e3d32;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s;
+        }
+        .form-check {
+            text-align: left;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .table-dark {
+            background-color: #3e3d32;
+            color: #f8f8f2;
+        }
+        .table-dark th, .table-dark td {
+            border: 1px solid #272822;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Analytics Tester</h1>
+        <div class="form-container">
+            <form id="testForm">
+                <div class="form-group">
+                    <label for="links">Links (comma separated):</label>
+                    <input type="text" class="form-control" id="links" name="links" required>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="Authentication" name="Authentication">
+                    <label class="form-check-label" for="Authentication">Authentication</label>
+                </div>
+                <div class="form-group">
+                    <label for="credsUser">Creds User:</label>
+                    <input type="text" class="form-control" id="credsUser" name="credsUser" required>
+                </div>
+                <div class="form-group">
+                    <label for="credsPass">Creds Pass:</label>
+                    <input type="password" class="form-control" id="credsPass" name="credsPass" required>
+                </div>
+                <div class="form-group">
+                    <label for="Screenshot">Screenshot:</label>
+                    <select class="form-control" id="Screenshot" name="Screenshot" required>
+                        <option value="full">Full</option>
+                        <option value="true">Normal</option>
+                        <option value="false">None</option>
+                    </select>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="consent" name="consent">
+                    <label class="form-check-label" for="consent">Consent</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="allDevice" name="allDevice">
+                    <label class="form-check-label" for="allDevice">All Device</label>
+                </div>
+                <div class="form-group">
+                    <label for="Click">Click:</label>
+                    <input type="text" class="form-control" id="Click" name="Click">
+                </div>
+                <div class="form-group">
+                    <label for="scrollDepth">Scroll Depth:</label>
+                    <input type="number" class="form-control" id="scrollDepth" name="scrollDepth" required>
+                </div>
+                <div class="form-group">
+                    <label for="analyticsCalls">Analytics Calls:</label>
+                    <table class="table table-dark" id="analyticsCallsTable">
+                        <thead>
+                            <tr>
+                                <th>Includes Text</th>
+                                <th>Output Key</th>
+                                <th>Request Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" class="form-control" name="includesText"></td>
+                                <td><input type="text" class="form-control" name="outputKey"></td>
+                                <td>
+                                    <select class="form-control" name="reqType">
+                                        <option value="All">All</option>
+                                        <option value="GET">GET</option>
+                                        <option value="POST">POST</option>
+                                    </select>
+                                </td>
+                                <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn btn-secondary" onclick="addRow()">Add Row</button>
+                </div>
+                <div class="form-group">
+                    <label for="dataLayer">Data Layer:</label>
+                    <input type="text" class="form-control" id="dataLayer" name="dataLayer" required>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="FileOutput" name="FileOutput">
+                    <label class="form-check-label" for="FileOutput">File Output</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Run Test</button>
+            </form>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function addRow() {
+            const table = document.getElementById('analyticsCallsTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td><input type="text" class="form-control" name="includesText"></td>
+                <td><input type="text" class="form-control" name="outputKey"></td>
+                <td>
+                    <select class="form-control" name="reqType">
+                        <option value="All">All</option>
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                    </select>
+                </td>
+                <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
+            `;
+        }
+
+        function removeRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        document.getElementById('testForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const links = document.getElementById('links').value.split(',');
+            const analyticsCalls = Array.from(document.querySelectorAll('#analyticsCallsTable tbody tr')).map(row => {
+                return {
+                    includesText: row.querySelector('input[name="includesText"]').value,
+                    outputKey: row.querySelector('input[name="outputKey"]').value,
+                    reqType: row.querySelector('select[name="reqType"]').value
+                };
+            });
+            const extraParameter = {
+                Authentication: document.getElementById('Authentication').checked,
+                creds: {
+                    user: document.getElementById('credsUser').value,
+                    pass: document.getElementById('credsPass').value
+                },
+                Screenshot: document.getElementById('Screenshot').value,
+                consent: document.getElementById('consent').checked,
+                allDevice: document.getElementById('allDevice').checked,
+                Click: document.getElementById('Click').value,
+                scrollDepth: parseInt(document.getElementById('scrollDepth').value),
+                analyticsCalls: analyticsCalls,
+                dataLayer: document.getElementById('dataLayer').value,
+                FileOutput: document.getElementById('FileOutput').checked
+            };
+
+            const response = await fetch('/run-test', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ links, extraParameter })
+            });
+
+            const result = await response.text();
+            document.getElementById('result').innerText = result;
+        });
+
+        // Pre-fill the form with sample data
+        document.getElementById('links').value = "https://ecommerce.tealiumdemo.com/";
+        document.getElementById('Authentication').checked = true;
+        document.getElementById('credsUser').value = "readonly";
+        document.getElementById('credsPass').value = "secret";
+        document.getElementById('Screenshot').value = "full";
+        document.getElementById('consent').checked = true;
+        document.getElementById('allDevice').checked = true;
+        document.getElementById('Click').value = "";
+        document.getElementById('scrollDepth').value = 100;
+        document.getElementById('dataLayer').value = "utag_data";
+        document.getElementById('FileOutput').checked = true;
+    </script>
+</body>
+</html>

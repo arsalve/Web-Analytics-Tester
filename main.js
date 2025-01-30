@@ -409,8 +409,8 @@ async function coldstart(links, len, count, extraParameter, op) {
  * @param {Object} extraParameter - Additional parameters for processing.
  * @returns {Promise<void>}
  */
-async function main(Testlinks, extraParameter) {
-    var links = [...Testlinks];
+async function main(extraParameter) {
+    var links = [...extraParameter.links];
     var len = links.length;
     var count = 0;
     var op = [];
@@ -420,13 +420,13 @@ async function main(Testlinks, extraParameter) {
 
 // Sample extraParameter object
 var extraParameter = {
-    normal: "screenshot",
-    full: "Authentication",
+    links = ["https://ecommerce.tealiumdemo.com/"];
+    Authentication:true,
     creds: {
         user: "readonly",
         pass: "secret"
     },
-    Screenshot: "full",
+    Screenshot: "full",// Full = full page screenshot , true = normal page screenshot, False = no screenshot
     consent: true,
     allDevice: true,
     Click: false,
@@ -454,12 +454,13 @@ var extraParameter = {
 
     ],
     dataLayer: "utag_data",
-
     FileOutput: true
 };
 
 // Sample links array
-const links = ["https://ecommerce.tealiumdemo.com/"];
+ 
 
 // Start the main process
-main(links, extraParameter);
+//main(extraParameter);
+
+module.exports =  main;
