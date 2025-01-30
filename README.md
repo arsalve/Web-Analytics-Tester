@@ -44,21 +44,9 @@ Result
 
 ## Configuration
 
-The 
+The extraParameter object in main.js allows you to customize the behavior of the bot. Here are some of the key parameters:
 
-extraParameter
-
- object in 
-
-main.js
-
- allows you to customize the behavior of the bot. Here are some of the key parameters:
-
-- 
-
-links
-
-: Array of URLs to test.
+- `links` : Array of URLs to test.
 - `Authentication`: Boolean indicating whether to use authentication.
 - `creds`: Object containing `user` and `pass` for authentication.
 - `Screenshot`: String indicating the type of screenshot (`full`, `true`, `false`).
