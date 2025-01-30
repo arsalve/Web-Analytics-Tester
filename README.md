@@ -1,4 +1,3 @@
-Sure, here's an updated README file with detailed instructions on how to fill out the HTML form and how the entire tool works:
 
 ```markdown
 # Web-Analytics-Tester
