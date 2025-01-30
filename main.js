@@ -419,7 +419,7 @@ async function main(extraParameter) {
 }
 
 // Sample extraParameter object
-var extraParameter = {
+/*var extraParameter = {
     links = ["https://ecommerce.tealiumdemo.com/"],
     Authentication:true,
     creds: {
@@ -461,6 +461,6 @@ var extraParameter = {
  
 
 // Start the main process
-//main(extraParameter);
+//main(extraParameter);*/
 
 module.exports =  main;
