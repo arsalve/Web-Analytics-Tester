@@ -1,5 +1,4 @@
 
-```markdown
 # Web-Analytics-Tester
 
 This bot tests various web analytics network calls and generates reports in JSON and CSV formats.
